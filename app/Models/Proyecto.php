@@ -11,7 +11,7 @@ class Proyecto extends Model
     public function colaboradors(){
         return $this->belongsToMany(Colaborador::class);
     }
-    public function proyecto(){
-        return $this->belongsTo(Proyecto::class);
+    public function clientes(){
+        return $this->hasMany(Cliente::class);
     }
 }

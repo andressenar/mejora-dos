@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colaboradors', function (Blueprint $table) {
+        Schema::create('tipopagos', function (Blueprint $table) {
             $table->id();
-            $table->string('nif');
-            $table->string('nombre');
+
+            
             $table->timestamps();
+            
             $table->unsignedBigInteger('pago_id');
             $table->foreign('pago_id')->references('id')->on('pagos')->onDelete('cascade');
+        
+            
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colaboradors');
+        Schema::dropIfExists('tipopagos');
     }
 };

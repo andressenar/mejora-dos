@@ -9,6 +9,6 @@ class Tipopago extends Model
 {
     use HasFactory;
     public function pago(){
-        return $this->hasMany(Pago::class);
+        return $this->belongsTo(Pago::class);
     }
 }

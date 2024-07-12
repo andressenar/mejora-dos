@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipopagos', function (Blueprint $table) {
+        Schema::create('colaboradors', function (Blueprint $table) {
             $table->id();
-
-            
+            $table->string('nif');
+            $table->string('nombre');
             $table->timestamps();
-        });
+            });
     }
 
     /**
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipopagos');
+        Schema::dropIfExists('colaboradors');
     }
 };

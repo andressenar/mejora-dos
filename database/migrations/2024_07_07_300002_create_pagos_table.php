@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('fecha_pago');
 
             $table->timestamps();
+            $table->unsignedBigInteger('colaborador_id');
+            $table->foreign('colaborador_id')->references('id')->on('colaboradors')->onDelete('cascade');
+        
 
-            $table->unsignedBigInteger('tipopago_id');
-            $table->foreign('tipopago_id')->references('id')->on('tipopagos')->onDelete('cascade');
-        });
+            });
     }
 
     /**
