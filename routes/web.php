@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\ColaboradorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,11 +10,20 @@ Route::get('/', function () {
 Route::get('/index', function(){
     return view('index');
 });
-Route::post('/client', [ClienteController::class,'store'])->name('client.store');
-Route::get('/client',[ClienteController::class,'create']);
+Route::post('/proyecto', [ProyectoController::class,'store'])->name('proyecto.store');
+Route::get('/proyecto',[ProyectoController::class,'create']);
 
-Route::get('client/client',[ClienteController::class,'index'])->name('client.index');
-Route::get('client/{client}',[ClienteController::class,'show'])->name('client.show');
-Route::delete('client/{client}',[ClienteController::class,'destroy'])->name('client.destroy');
-Route::put('client/{client}',[ClienteController::class,'update'])->name('client.update');
-Route::get('client/{client}/editar',[ClienteController::class,'edit'])->name('client.edit');
+Route::get('proyecto/proyecto',[ProyectoController::class,'index'])->name('proyecto.index');
+Route::get('proyecto/{proyecto}',[ProyectoController::class,'show'])->name('proyecto.show');
+Route::delete('proyecto/{proyecto}',[ProyectoController::class,'destroy'])->name('proyecto.destroy');
+Route::put('proyecto/{proyecto}',[ProyectoController::class,'update'])->name('proyecto.update');
+Route::get('proyecto/{proyecto}/editar',[ProyectoController::class,'edit'])->name('proyecto.edit');
+
+Route::post('/colaborador', [ColaboradorController::class,'store'])->name('colaborador.store');
+Route::get('/colaborador',[ColaboradorController::class,'create']);
+
+Route::get('colaborador/colaborador',[ColaboradorController::class,'index'])->name('colaborador.index');
+Route::get('colaborador/{colaborador}',[ColaboradorController::class,'show'])->name('colaborador.show');
+Route::delete('colaborador/{colaborador}',[ColaboradorController::class,'destroy'])->name('colaborador.destroy');
+Route::put('colaborador/{colaborador}',[ColaboradorController::class,'update'])->name('colaborador.update');
+Route::get('colaborador/{colaborador}/editar',[ColaboradorController::class,'edit'])->name('colaborador.edit');

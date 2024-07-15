@@ -12,7 +12,9 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        //
+        $proyecto = Proyecto::orderBy('id', 'desc')->get();
+        return view('proyecto.index', compact('proyecto'));
+
     }
 
     /**
@@ -20,7 +22,7 @@ class ProyectoController extends Controller
      */
     public function create()
     {
-        //
+        return view('proyecto.create');
     }
 
     /**
@@ -28,7 +30,19 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* dd($request->all()); */
+        $proyecto = new Proyecto();
+        
+        $proyecto->codigo = $request->codigo;
+        $proyecto->fecha_inicio = $request->fecha_inicio;
+        $proyecto->fecha_fin = $request->fecha_fin;
+        $proyecto->descripcion = $request->descripcion;
+        $proyecto->cuantia = $request->cuantia;
+      
+        
+        
+        $proyecto->save();
+        return redirect()->route('proyecto.index');
     }
 
     /**
@@ -36,7 +50,7 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
-        //
+        return view('proyecto.show',compact('proyecto'));
     }
 
     /**
@@ -44,7 +58,7 @@ class ProyectoController extends Controller
      */
     public function edit(Proyecto $proyecto)
     {
-        //
+        return view('proyecto.edit',compact('proyecto'));
     }
 
     /**
@@ -52,7 +66,15 @@ class ProyectoController extends Controller
      */
     public function update(Request $request, Proyecto $proyecto)
     {
-        //
+        $proyecto->codigo = $request->codigo;
+        $proyecto->fecha_inicio = $request->fecha_inicio;
+        $proyecto->fecha_fin = $request->fecha_fin;
+        $proyecto->descripcion = $request->descripcion;
+        $proyecto->cuantia = $request->cuantia;
+        
+        
+        $proyecto->save();
+        return redirect()->route('proyecto.index');
     }
 
     /**
@@ -60,6 +82,7 @@ class ProyectoController extends Controller
      */
     public function destroy(Proyecto $proyecto)
     {
-        //
+        $proyecto->delete();
+        return redirect()->route('proyecto.index');
     }
 }

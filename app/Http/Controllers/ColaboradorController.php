@@ -12,7 +12,9 @@ class ColaboradorController extends Controller
      */
     public function index()
     {
-        //
+        $colaborador = Colaborador::orderBy('id', 'desc')->get();
+        return view('colaborador.index', compact('colaborador'));
+
     }
 
     /**
@@ -20,7 +22,7 @@ class ColaboradorController extends Controller
      */
     public function create()
     {
-        //
+        return view('colaborador.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class ColaboradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* dd($request->all()); */
+        $colaborador = new Colaborador();
+        
+        $colaborador->nif = $request->nif;
+        $colaborador->nombre = $request->nombre;
+      
+        
+        
+        $colaborador->save();
+        return redirect()->route('colaborador.index');
     }
 
     /**
@@ -36,7 +47,7 @@ class ColaboradorController extends Controller
      */
     public function show(Colaborador $colaborador)
     {
-        //
+        return view('colaborador.show',compact('colaborador'));
     }
 
     /**
@@ -44,7 +55,7 @@ class ColaboradorController extends Controller
      */
     public function edit(Colaborador $colaborador)
     {
-        //
+        return view('colaborador.edit',compact('colaborador'));
     }
 
     /**
@@ -52,7 +63,14 @@ class ColaboradorController extends Controller
      */
     public function update(Request $request, Colaborador $colaborador)
     {
-        //
+        
+        
+        $colaborador->nif = $request->nif;
+        $colaborador->nombre = $request->nombre;
+        
+        
+        $colaborador->save();
+        return redirect()->route('colaborador.index');
     }
 
     /**
@@ -60,6 +78,7 @@ class ColaboradorController extends Controller
      */
     public function destroy(Colaborador $colaborador)
     {
-        //
+        $colaborador->delete();
+        return redirect()->route('colaborador.index');
     }
 }
